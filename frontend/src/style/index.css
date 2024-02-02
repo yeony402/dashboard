@@ -1,0 +1,346 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+head {
+  display: flex;
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+li {
+  margin-right: 10px;
+}
+
+h3 {
+  width: 220px;
+  text-align: left;
+}
+
+h4 {
+  color: rgb(200, 202, 203);
+}
+
+p {
+  font-size: 12px;
+}
+
+button {
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+main {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.inoutput-content {
+  width: 100px;
+  height: 250px;
+  flex: 1;
+  padding: 20px;
+}
+
+/* 기상 차트  */
+
+.chartBox {
+  width: 400px;
+  height: 480px;
+  padding: 0 10px 10px 10px;
+  position: relative;
+  top: 20px;
+  border-radius: 20px;
+  border: solid 3px rgba(54, 162, 235, 1);
+  background: rgba(255, 255, 255, 0);
+}
+
+.container {
+  width: 400px;
+  position: absolute;
+  bottom: 20px;
+  overflow-x: scroll;
+}
+
+.containerBody {
+  padding: 10px;
+  height: 280px;
+}
+
+.weatherCanvas {
+  display: block;
+  box-sizing: border-box;
+  height: 280px;
+  width: 400px;
+  position: absolute;
+  right: 20px;
+}
+
+/* 기상 버튼 */
+
+.weatherButtonContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 200px;
+  margin-top: 10px; /* 원하는 간격 설정 */
+}
+
+.weatherButton {
+  border: none;
+  border-radius: 5px; /* 버튼을 둥글게 만듭니다. */
+  padding: 8px 30px;
+  background-color: #1f2931; /* 배경색 설정 */
+  color: rgb(220, 218, 218); /* 텍스트 색상 설정 */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  z-index: 1;
+  margin: 5px 2px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+.buttonLine {
+  line-height: 1.5; /* 또는 다른 원하는 값으로 설정 */
+}
+
+/* 탱크 입,출력 차트 */
+
+.inputTankChartBox {
+  width: 430px;
+  height: 240px;
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 3px rgb(153, 0, 153);
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.outputTankChartBox {
+  width: 430px;
+  height: 240px;
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 3px rgb(137, 184, 240);
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.inputTankContainer {
+  width: 350px;
+  position: absolute;
+  right: 15px;
+  bottom: 7px;
+  overflow-x: scroll;
+}
+
+.inputTankContainerBody {
+  padding: 10px;
+  height: 230px;
+}
+
+.inputTankCanvas {
+  /* display: block;
+  box-sizing: border-box;
+  height: 280px;
+  width: 400px; */
+  position: absolute;
+  right: 0px;
+}
+
+/* 탱크 입,출력 버튼 */
+
+.inputTankButtonContainer {
+  display: inline-grid;
+  /* margin: 8px; */
+  position: relative;
+  top: 50px;
+  z-index: 1;
+  /* left: 8px; */
+}
+
+.inputTankButton {
+  border: none;
+  border-radius: 5px; /* 버튼을 둥글게 만듭니다. */
+  padding: 10px 20px;
+  background-color: #1f2931; /* 배경색 설정 */
+  color: rgb(220, 218, 218); /* 텍스트 색상 설정 */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px 2px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+/* 탱크 차트 */
+
+.tankChartBox {
+  width: 600px;
+  height: 320px;
+  padding: 10px;
+  border-radius: 20px;
+  border: solid 3px rgba(54, 162, 235, 1);
+  background: rgba(255, 255, 255, 0);
+  position: absolute;
+  top: 0;
+}
+
+.tankContainer {
+  width: 350px;
+  position: absolute;
+  right: 0px;
+  bottom: 30px;
+  overflow-x: scroll;
+}
+
+.tankContainerBody {
+  padding: 10px;
+  height: 260px;
+}
+
+.tankCanvas {
+  /* display: block;
+  box-sizing: border-box;
+  height: 280px;
+  width: 400px; */
+  position: absolute;
+  right: 0px;
+}
+
+
+/* 탱크 버튼 */
+.tank-content {
+  width: 200px;
+  height: 320px;
+}
+
+.tankButtonContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  top: 60px;
+  left: 35px;
+  margin-top: 10px;
+  z-index: 1;
+}
+
+.tankButton {
+  border: none;
+  border-radius: 5px; /* 버튼을 둥글게 만듭니다. */
+  padding: 10px 20px;
+  background-color: #1f2931; /* 배경색 설정 */
+  color: rgb(220, 218, 218); /* 텍스트 색상 설정 */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px 2px;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+/* 탱크 밸브 레이아웃(버튼) */
+
+.tankValveContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 390px;
+  position: absolute;
+  right: 10px;
+  padding: 15px;
+  border-radius: 20px;
+  border: solid 3px rgba(54, 162, 235, 1);
+  background: rgba(255, 255, 255, 0);
+}
+
+.item {
+  width: calc(25% - 15px);
+  margin: 5px;
+  padding-bottom: 5px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.valveButton {
+  padding: 5px 10px;
+  font-size: 8px;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 5px; /* 버튼을 둥글게 만듭니다. */
+  background-color: #1f2931; /* 배경색 설정 */
+  color: rgb(220, 218, 218); /* 텍스트 색상 설정 */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  /* margin: 5px 2px; */
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  transition: background-color 0.3s ease; /* 배경색 변경 애니메이션 */
+}
+
+/* 탱크 입,출력 밸브 */
+
+.tankValveInputContainer {
+  /* height: 120px; */
+  /* padding: 15px; */
+  /* text-align: center; */
+  border-radius: 20px;
+  border: solid 3px rgb(153, 0, 153);
+  background: rgba(255, 255, 255, 0);
+
+}
+
+.tankValveOutputContainer {
+  /* height: 120px; */
+  /* padding: 15px; */
+  /* text-align: center; */
+  border-radius: 20px;
+  border: solid 3px rgb(137, 184, 240);
+  background: rgba(255, 255, 255, 0);
+
+}
+
+.tankValveIO {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  /* text-align: center; */
+}
+
+/* 클릭된 버튼 */
+
+.valveButton.clicked {
+  background-color: #788ba1; /* 클릭된 상태의 배경색을 원하는 색상으로 설정하세요 */
+  color: #ffffff; /* 텍스트 색상을 원하는 색상으로 설정하세요 */
+}
