@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const RainfallChart = () => {
-    const {timeList, rainfallList} = useMyContext();
+    const {rainfallList} = useMyContext();
     const returnRainfallChart = useRef(null);
 
     useEffect(() => {
@@ -43,27 +44,8 @@ const RainfallChart = () => {
         };
     }, []);
 
-  
-  useEffect(() => {
-    if (returnRainfallChart.current) {
-      const currentIndex = returnRainfallChart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = rainfallList[rainfallList.length-1];
-  
-      if (currentIndex >= 10) {
-        returnRainfallChart.current.data.labels.shift();
-        returnRainfallChart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가합니다.
-      returnRainfallChart.current.data.labels.push(x);
-      returnRainfallChart.current.data.datasets[0].data.push(y);
-  
-      // 차트를 업데이트합니다.
-      returnRainfallChart.current.update();
-  }
-  
-  }, [timeList, rainfallList]);
+
+    useCustomEffect(returnRainfallChart.current, rainfallList);
 
   return <canvas className='weatherCanvas' ref={returnRainfallChart} />;
 

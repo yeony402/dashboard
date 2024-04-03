@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const UltraDustChart = () => {
-    const {timeList, ultraDustList} = useMyContext();
+    const {ultraDustList} = useMyContext();
     const returnUltraDustChart = useRef(null);
 
     useEffect(() => {
@@ -44,26 +45,7 @@ const UltraDustChart = () => {
     }, []);
 
   
-  useEffect(() => {
-    if (returnUltraDustChart.current) {
-      const currentIndex = returnUltraDustChart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = ultraDustList[ultraDustList.length-1];
-  
-      if (currentIndex >= 10) {
-        returnUltraDustChart.current.data.labels.shift();
-        returnUltraDustChart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가합니다.
-      returnUltraDustChart.current.data.labels.push(x);
-      returnUltraDustChart.current.data.datasets[0].data.push(y);
-  
-      // 차트를 업데이트합니다.
-      returnUltraDustChart.current.update();
-  }
-  
-  }, [timeList, ultraDustList]);
+    useCustomEffect(returnUltraDustChart.current, ultraDustList);
 
   return <canvas className='weatherCanvas' ref={returnUltraDustChart} />;
 

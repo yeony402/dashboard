@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'; //version5
 import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
-import BackgroundImage from './piece/BackgroundImage';
-import { MyProvider, useMyContext } from './MyContext';
+import BackgroundImage from './pages/BackgroundImage';
+import { MyProvider, useMyContext } from './Context';
 import '../style/index.css';
 
 const WebSocketExample = () => {
@@ -96,7 +96,7 @@ useEffect(() => {
       console.log("연결이 끊겼습니다.");
     }
   };
-}, [setTimeList, setTempList, setHumidityList]);
+}, []);
 
 
   return (

@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const HumidityChart = () => {
-    const {timeList, humidityList} = useMyContext();
+    const {humidityList} = useMyContext();
     const returnHumidityChart = useRef(null);
 
     useEffect(() => {
@@ -44,28 +45,8 @@ const HumidityChart = () => {
     }, []);
 
   
-  useEffect(() => {
-    // 실시간 데이터 업데이트를 수신하고 차트를 업데이트
-    if (returnHumidityChart.current) {
-      const currentIndex = returnHumidityChart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = humidityList[humidityList.length-1];
+    useCustomEffect(returnHumidityChart.current, humidityList);
   
-      if (currentIndex >= 10) {
-        returnHumidityChart.current.data.labels.shift();
-        returnHumidityChart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가
-      returnHumidityChart.current.data.labels.push(x);
-      returnHumidityChart.current.data.datasets[0].data.push(y);
-  
-      // 차트 업데이트
-      returnHumidityChart.current.update();
-  }
-  
-  }, [timeList, humidityList]);
-
   return <canvas className='weatherCanvas' ref={returnHumidityChart} />;
 
 };

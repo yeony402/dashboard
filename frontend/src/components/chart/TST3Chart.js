@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const TST3Chart = () => {
-    const {timeList, tST3List} = useMyContext();
+    const {tST3List} = useMyContext();
     const returnTST3Chart = useRef(null);
 
     useEffect(() => {
@@ -44,26 +45,7 @@ const TST3Chart = () => {
     }, []);
 
   
-  useEffect(() => {
-    if (returnTST3Chart.current) {
-      const currentIndex = returnTST3Chart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = tST3List[tST3List.length-1];
-  
-      if (currentIndex >= 10) {
-        returnTST3Chart.current.data.labels.shift();
-        returnTST3Chart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가합니다.
-      returnTST3Chart.current.data.labels.push(x);
-      returnTST3Chart.current.data.datasets[0].data.push(y);
-  
-      // 차트를 업데이트합니다.
-      returnTST3Chart.current.update();
-  }
-  
-  }, [timeList, tST3List]);
+    useCustomEffect(returnTST3Chart.current, tST3List);
 
   return <canvas className='weatherCanvas' ref={returnTST3Chart} />;
 

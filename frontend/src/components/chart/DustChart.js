@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const DustChart = () => {
-    const {timeList, dustList} = useMyContext();
+    const {dustList} = useMyContext();
     const returnDustChart = useRef(null);
 
     useEffect(() => {
@@ -44,26 +45,7 @@ const DustChart = () => {
     }, []);
 
   
-  useEffect(() => {
-    if (returnDustChart.current) {
-      const currentIndex = returnDustChart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = dustList[dustList.length-1];
-  
-      if (currentIndex >= 10) {
-        returnDustChart.current.data.labels.shift();
-        returnDustChart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가합니다.
-      returnDustChart.current.data.labels.push(x);
-      returnDustChart.current.data.datasets[0].data.push(y);
-  
-      // 차트를 업데이트합니다.
-      returnDustChart.current.update();
-  }
-  
-  }, [timeList, dustList]);
+    useCustomEffect(returnDustChart.current, dustList);
 
   return <canvas className='weatherCanvas' ref={returnDustChart} />;
 

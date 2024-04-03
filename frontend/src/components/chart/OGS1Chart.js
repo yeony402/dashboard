@@ -1,9 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import { useMyContext } from '../MyContext';
+import { useMyContext } from '../Context';
+import { useCustomEffect } from '../hook/UseUpdate';
 
 const OGS1Chart = () => {
-    const {timeList, oGS1List} = useMyContext();
+    const {oGS1List} = useMyContext();
     const returnOGS1Chart = useRef(null);
 
     useEffect(() => {
@@ -44,27 +45,8 @@ const OGS1Chart = () => {
     }, []);
 
   
-  useEffect(() => {
-    if (returnOGS1Chart.current) {
-      const currentIndex = returnOGS1Chart.current.data.labels.length;
-      let x = timeList[timeList.length-1];
-      let y = oGS1List[oGS1List.length-1];
+    useCustomEffect(returnOGS1Chart.current, oGS1List);
   
-      if (currentIndex >= 10) {
-        returnOGS1Chart.current.data.labels.shift();
-        returnOGS1Chart.current.data.datasets[0].data.shift();
-      }
-  
-      // 새로운 데이터와 레이블을 차트에 추가
-      returnOGS1Chart.current.data.labels.push(x);
-      returnOGS1Chart.current.data.datasets[0].data.push(y);
-  
-      // 차트 업데이트
-      returnOGS1Chart.current.update();
-  }
-  
-  }, [timeList, oGS1List]);
-
   return <canvas className='inputTankCanvas' ref={returnOGS1Chart} />;
 
 };
