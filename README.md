@@ -14,18 +14,18 @@
 
 ### **backend**  
 
-springboot 3.2.1  
-java 17.0.10  
-websocket  
+- springboot 3.2.1  
+- java 17.0.10  
+- websocket  
   
 ### **frontend**  
 
-react 18.2  
-node 20.10.0  
-javascript  
-stompjs 2.3.3  
-sockjs-client 1.6.1  
-chart.js 3.9  
+- react 18.2
+- node 20.10.0
+- javascript
+- stompjs 2.3.3
+- sockjs-client 1.6.1
+- chart.js 3.9  
 
 
   
